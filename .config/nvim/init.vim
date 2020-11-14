@@ -101,11 +101,14 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 autocmd CursorHold * silent call CocActionAsync('highlight')
 "var rename
 nmap <leader>rn <Plug>(coc-rename)
-"coc.nvim
-"let g:coc_global_extensions = [
-"	\ 'coc-json',
-"	\ 'coc-vimlsp']
 
+"coc.nvim
+let g:coc_global_extensions = [
+	\ 'coc-json',
+	\ 'coc-vimlsp',
+	\ 'coc-clangd',
+	\ 'coc-word',
+	\ 'coc-python',]
 
 "plug.vim
 call plug#begin('~/.config/nvim/plugged')
