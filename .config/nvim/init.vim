@@ -53,6 +53,13 @@ set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
 set enc=utf8
 set fencs=utf8,gbk,gb2312,gb18030
 
+
+
+
+
+
+
+"Coc.nvim
 "TAB 补全
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
@@ -104,19 +111,47 @@ nmap <leader>rn <Plug>(coc-rename)
 
 "coc.nvim
 let g:coc_global_extensions = [
-	\ 'coc-json',
+	\ 'coc-cmake',
+	\ 'coc-highlight',
+	\ 'coc-python',
+	\ 'coc-snippets',
 	\ 'coc-vimlsp',
-	\ 'coc-clangd',
-	\ 'coc-word',
-	\ 'coc-python',]
+	\ 'coc-clangd',]
+
+
+
+
+
+
+"NERDTree
+" autocmd vimenter * NERDTree  "自动开启Nerdtree
+let g:NERDTreeWinSize = 25 "设定 NERDTree 视窗大小
+let NERDTreeShowBookmarks=1  " 开启Nerdtree时自动显示Bookmarks
+"打开vim时如果没有文件自动打开NERDTree
+" autocmd vimenter * if !argc()|NERDTree|endif
+"当NERDTree为剩下的唯一窗口时自动关闭
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" 设置树的显示图标
+let g:NERDTreeDirArrowExpandable = '+'
+let g:NERDTreeDirArrowCollapsible = '-'
+let NERDTreeIgnore = ['\.pyc$']  " 过滤所有.pyc文件不显示
+let g:NERDTreeShowLineNumbers=0 " 是否显示行号
+let g:NERDTreeHidden=0     "不显示隐藏文件
+""Making it prettier
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+nnoremap <F3> :NERDTreeToggle<CR> " 开启/关闭nerdtree快捷键
+
+
+
+
 
 "plug.vim
 call plug#begin('~/.config/nvim/plugged')
-"theme_deus
-Plug 'theniceboy/vim-deus'
 "coc.nvim
 Plug 'neoclide/coc.nvim'
+
+"NERDTree
+Plug 'preservim/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 call plug#end()
-
-
-
