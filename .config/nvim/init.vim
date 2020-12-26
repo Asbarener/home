@@ -111,11 +111,12 @@ nmap <leader>rn <Plug>(coc-rename)
 
 "coc.nvim
 let g:coc_global_extensions = [
-	\ 'coc-cmake',
+	\ 'coc-json',
 	\ 'coc-highlight',
 	\ 'coc-python',
 	\ 'coc-snippets',
 	\ 'coc-vimlsp',
+	\ 'coc-word',
 	\ 'coc-clangd',]
 
 
