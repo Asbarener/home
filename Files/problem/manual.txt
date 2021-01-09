@@ -63,4 +63,5 @@ sudo pacman -S fcitx-configtools   #图形配置工具
 sudo pacman -S sunpinyin    #输入法
 
 
-
+network-manager-
+paxmier
