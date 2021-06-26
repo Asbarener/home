@@ -9,7 +9,7 @@ let mapleader=" "
 syntax on
 "Theme
 set background=dark
-color deus
+color molokai
 "vim 响应
 set updatetime=100
 "vim 剪切板
