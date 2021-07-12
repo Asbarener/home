@@ -8,8 +8,11 @@ let mapleader=" "
 "开启高亮
 syntax on
 "Theme
-set background=dark
+"set background=dark
 color molokai
+"color solarized
+"color gruvbox
+"color one
 "vim 响应
 set updatetime=100
 "vim 剪切板
@@ -25,8 +28,8 @@ set hidden
 "输入线
 set cursorline
 "换行
-set wrap
-set showcmd
+"set wrap
+"set showcmd
 "补全
 set wildmenu
 "搜索
@@ -49,15 +52,13 @@ map sl :set splitright<CR>:vsplit<CR>
 map sh :set nosplitright<CR>:vsplit<CR>
 map sk :set nosplitbelow<CR>:split<CR>
 map sj :set splitbelow<CR>:split<CR>
+
+"map L6 :vertical res 68<CR>
+"map K6 :res 68<CR>
+
 set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
 set enc=utf8
 set fencs=utf8,gbk,gb2312,gb18030
-
-
-
-
-
-
 
 "Coc.nvim
 "TAB 补全
@@ -102,12 +103,26 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window.
-"nnoremap <silent> K :call <SID>show_documentation()<CR>
+nnoremap <silent> <LEADER>h :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
 
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
 "var rename
 nmap <leader>rn <Plug>(coc-rename)
+
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
 
 "coc.nvim
 let g:coc_global_extensions = [
@@ -115,36 +130,32 @@ let g:coc_global_extensions = [
 	\ 'coc-snippets',
 	\ 'coc-vimlsp',
 	\ 'coc-json',
+	\ 'coc-json',
+	\ 'coc-tsserver',
+	\ 'coc-terminal',
 	\ 'coc-word',
 	\ 'coc-python',
 	\ 'coc-clangd',]
 
-
-
-
-
-
-"NERDTree
-" autocmd vimenter * NERDTree  "自动开启Nerdtree
-let g:NERDTreeWinSize = 25 "设定 NERDTree 视窗大小
-let NERDTreeShowBookmarks=1  " 开启Nerdtree时自动显示Bookmarks
-"打开vim时如果没有文件自动打开NERDTree
-" autocmd vimenter * if !argc()|NERDTree|endif
-"当NERDTree为剩下的唯一窗口时自动关闭
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" 设置树的显示图标
-let g:NERDTreeDirArrowExpandable = '+'
-let g:NERDTreeDirArrowCollapsible = '-'
-let NERDTreeIgnore = ['\.pyc$']  " 过滤所有.pyc文件不显示
-let g:NERDTreeShowLineNumbers=0 " 是否显示行号
-let g:NERDTreeHidden=0     "不显示隐藏文件
-""Making it prettier
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-nnoremap <F3> :NERDTreeToggle<CR> " 开启/关闭nerdtree快捷键
-
-
-
+	"\ 'coc-emmet',
+""NERDTree
+"" autocmd vimenter * NERDTree  "自动开启Nerdtree
+"let g:NERDTreeWinSize = 25 "设定 NERDTree 视窗大小
+"let NERDTreeShowBookmarks=1  " 开启Nerdtree时自动显示Bookmarks
+""打开vim时如果没有文件自动打开NERDTree
+"" autocmd vimenter * if !argc()|NERDTree|endif
+""当NERDTree为剩下的唯一窗口时自动关闭
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"" 设置树的显示图标
+"let g:NERDTreeDirArrowExpandable = '+'
+"let g:NERDTreeDirArrowCollapsible = '-'
+"let NERDTreeIgnore = ['\.pyc$']  " 过滤所有.pyc文件不显示
+"let g:NERDTreeShowLineNumbers=0 " 是否显示行号
+"let g:NERDTreeHidden=0     "不显示隐藏文件
+"""Making it prettier
+"let NERDTreeMinimalUI = 1
+"let NERDTreeDirArrows = 1
+"nnoremap <F3> :NERDTreeToggle<CR> " 开启/关闭nerdtree快捷键
 
 
 "plug.vim
@@ -153,6 +164,6 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'neoclide/coc.nvim'
 
 "NERDTree
-Plug 'preservim/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
+"Plug 'preservim/nerdtree'
+"Plug 'Xuyuanp/nerdtree-git-plugin'
 call plug#end()
